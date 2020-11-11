@@ -1,0 +1,5 @@
+; composer vendor
+vendor
+
+; dev tools files
+.php_cs.cache
