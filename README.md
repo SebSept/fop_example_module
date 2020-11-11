@@ -7,13 +7,11 @@ You have only one configuration to do : provide a path to a Prestashop installat
 
 Everything needed is included in this repository you can just run `./vendor/bin/grumphp run`
 
-
 ## Coding standards
 
 Codes and documents on Friends of Presta targets [_PrestaShop_ ](https://github.com/prestashop/prestashop), we must use the same coding and writing rules.
 
 Prestashop follows guidelines using tools and configuration to ensure consistency.
-
 
 For details, you can read [the DevDocs coding standards](https://devdocs.prestashop.com/1.7/development/coding-standards/)
 
@@ -31,6 +29,11 @@ To run only fixer alone : `php vendor/bin/php-cs-fixer fix`
 @todo bla bla
 
 ` _PS_ROOT_DIR_=</path/to/prestashop/> php ./vendor/bin/phpstan.phar analyse ./`
+
+### Troubleshooting
+
+If you changed the path to Prestashop in grumphp.yml, you may need to clear the phpstan cache.
+Process deleting its cache in php temp dir (`/tmp/` on linux, use `sys_get_temp_dir()` to find it.).
 
 ## Go further
 
