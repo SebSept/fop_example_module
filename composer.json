@@ -19,7 +19,8 @@
   },
   "require-dev": {
     "prestashop/php-dev-tools": "3.*",
-    "phpstan/phpstan": "^0.12.54"
+    "phpstan/phpstan": "^0.12.54",
+    "phpro/grumphp-shim": "^1.1"
   },
   "config": {
     "preferred-install": "dist",

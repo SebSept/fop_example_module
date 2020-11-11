@@ -1,0 +1,10 @@
+grumphp:
+  tasks: { phpcsfixer: null, phpstan: null  }
+  environment:
+    variables:
+      _PS_ROOT_DIR_: "/home/htdocs/public/tests/prestashoplatest/"
+  parallel:
+    enabled: false
+  fixer:
+    enabled: true
+    fix_by_default: true

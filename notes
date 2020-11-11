@@ -1,0 +1,67 @@
+# php-cs-fix
+
+php vendor/bin/php-cs-fixer fix
+
+# php-stan
+
+Commande init de php-dev-tools copie dossier /templates/phpstan/ dans tests/phpstan
+    Contient le fichier de config phpstan.neon, qui inclue lui-même un autre fichier de config du package
+
+$ _PS_ROOT_DIR_=<Path_to_PrestaShop> php ~/.composer/vendor/bin/phpstan.phar --configuration=tests/phpstan/phpstan.neon analyse <path1
+$ _PS_ROOT_DIR_=/home/htdocs/public/tests/prestashoplatest php ./vendor/bin/phpstan.phar --configuration=phpstan.neon analyse ./
+
+@todo intégration phpstan
+    ps_emailalerts/tests/php/phpstan/phpstan.neon
+@todo intégration lint js
+@todo intégration lint html/css/scss
+@todo utilisation du header-stamp pour les licenses
+@todo outils pour ajouter les index.php - https://github.com/PrestaShopCorp/autoindex
+@todo cs fix ou phpstan vérifie typage strict ?
+@todo faire example de fonction avec deprecation.
+@todo task runner pour le lintage hors ide des ressources
+@todo script après create-project pour effacer examples intégrés (?) (exemples intégrés ?)
+@todo intégration workflow github - https://github.com/PrestaShopCorp/ pas mal d'actions, voir aussi celle de presta (sonst les mêmes ?) (comme https://github.com/PrestaShop/github-webhook-parser)
+@todo tester le module produit dans le validateur de modules
+
+lint js : .stylelintrc
+    - https://github.com/PrestaShop/stylelint-config
+    - https://github.com/PrestaShop/stylelint-browser-compatibility
+eslint : https://github.com/PrestaShop/eslint-config
+    
+
+@todo voir https://github.com/PrestaShop/example-modules
+For details, you can read [the DevDocs coding standards](https://devdocs.prestashop.com/1.7/development/coding-standards/)
+
+## Ressources
+
+https://github.com/PrestaShop/ADR
+devdocs
+github presta
+github presta corpo
+fop
+
+## Licenses
+
+## Achitecture
+
+ref à la doc prestashop 
+
++ le .gitignore d'ici.
+
+
+
+## Scripts
+
+Pour lancer les tests, les lints, prérarer le module pour la distribution...
+
+`composer dump-autoload -o --no-dev` pour préparer le dossier vendor
+
+lien doc ps
+
+## Go further
+
+Lots of information are available at [Prestashop DevDocs](https://devdocs.prestashop.com).
+
+## Legal
+
+_Prestashop_ is a registred tradmark of [Prestashop](https://www.prestashop.com).
