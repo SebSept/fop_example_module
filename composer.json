@@ -11,7 +11,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "FriendsOfPresta\\ExampleModule\\": "src/"
+      "FriendsOfPresta\\ExampleModule\\": "src/",
+      "FriendsOfPresta\\BaseModule\\": "dev_src/"
     }
   },
   "require": {
@@ -21,11 +22,20 @@
     "prestashop/php-dev-tools": "3.*",
     "phpstan/phpstan": "^0.12.54",
     "phpro/grumphp-shim": "^1.1"
+
   },
   "config": {
     "preferred-install": "dist",
     "optimize-autoloader": true,
     "prepend-autoloader": false
   },
-  "type": "prestashop-module"
+  "type": "prestashop-module",
+  "scripts": {
+    "check": [
+      "grumphp run"
+    ],
+    "post-create-project-cmd": [
+      "FriendsOfPresta\\BaseModule\\Integrator::integrate"
+    ]
+  }
 }
