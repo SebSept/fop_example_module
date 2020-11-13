@@ -1,11 +1,19 @@
 # About
 
-This repository serve as a start point for Friends of Presta modules and codes.
-It's configured with quality tools and checks tools.
+This repository serve as a start point for a building a quality Prestashop module.
+It's pre-configured with quality tools to ensure that (php-cs-fix, phpstan (more to come)) ready to run.
 
-You have only one configuration to do : provide a path to a Prestashop installation for phpstan to work properly.
+# Getting started
 
-Everything needed is included in this repository you can just run `./vendor/bin/grumphp run`
+Only one configuration is needed : provide a path to a Prestashop installation for phpstan to work properly.
+To do it edit `grumphp.yml` file, replace `/path/to/your/prestashop/` with ... a path to a Prestashop directory.
+
+You are done.
+
+Before each commit, the lints and checks will run.
+If something is wrong commit is aborted.
+
+You can also run all the checks and lints by running a single command : `composer run check`
 
 ## Coding standards
 
@@ -14,6 +22,8 @@ Codes and documents on Friends of Presta targets [_PrestaShop_ ](https://github.
 Prestashop follows guidelines using tools and configuration to ensure consistency.
 
 For details, you can read [the DevDocs coding standards](https://devdocs.prestashop.com/1.7/development/coding-standards/)
+
+##Preinstalled tools
 
 ### Php-cs-fixer
 
