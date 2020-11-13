@@ -1,3 +1,5 @@
+# copied from https://github.com/PrestaShop/php-dev-tools/blob/master/.github/workflows/php.yml
+# @todo : maybe we could copy it from the vendor dir
 name: PHP tests
 on: [push, pull_request]
 jobs:

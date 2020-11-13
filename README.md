@@ -1,16 +1,32 @@
 # About
 
 This repository serve as a start point for a building a quality Prestashop module.
-It's pre-configured with quality tools to ensure that (php-cs-fix, phpstan (more to come)) ready to run.
+It's pre-configured with tools to ensure that the code complies with the standards and is valid. 
 
-# Getting started
+It use pre-commit validation and github actions.
 
-Only one configuration is needed : provide a path to a Prestashop installation for phpstan to work properly.
-To do it edit `grumphp.yml` file, replace `/path/to/your/prestashop/` with ... a path to a Prestashop directory.
+It relies on prestashop tools. Prestashop tools relies on classic tools (php-cs-fix, phpstan and more (to come)).
 
-You are done.
+Read after 'Getting started' for more information.
+ 
+ # Getting started
 
-Before each commit, the lints and checks will run.
+Only 2 steps are required.
+## 1 : Install via composer
+ 
+ `composer create-project friends-of-presta/examplemodule --repository "{\"type\": \"vcs\", \"url\": \"https://github.com/SebSept/fop_example_module\"}" --stability=dev`
+ 
+> This is a temporary install, final will be `composer create-project friends-of-presta/examplemodule --stability=dev`
+
+## 2 : Configuration
+
+Edit `grumphp.yml` file, replace `/path/to/your/prestashop/` with ... a path to a Prestashop directory
+
+You are ready to go !
+
+Before each commit, the lints and checks will run without nothing more to do.
+Each push on the github repository (you have to it yourself), the checks in [workflows](.github/workflows) will be triggered.
+
 If something is wrong commit is aborted.
 
 You can also run all the checks and lints by running a single command : `composer run check`
