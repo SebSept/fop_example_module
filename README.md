@@ -67,11 +67,22 @@ Unlike the rest of this package, it relies on Prestashop tools.
 
 ### Php syntax
 
+@todo 
+
 ### Php cs fixer
+
+@todo
 
 ### Phpstan
 
-### Troubleshooting
+@todo
+
+### Php Security Checker
+
+[symfonycorp/security-checker-action](https://github.com/symfonycorp/security-checker-action) provided by Symfony.
+Checks composer dependencies with known vulnerabilities.
+
+## Troubleshooting
 
 If you changed the path to Prestashop in grumphp.yml, you may need to clear the phpstan cache.
 Process deleting its cache in php temp dir (`/tmp/` on linux, use `sys_get_temp_dir()` to find it.).
