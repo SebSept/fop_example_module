@@ -78,7 +78,7 @@ Process deleting its cache in php temp dir (`/tmp/` on linux, use `sys_get_temp_
 
 ## Go further
 
-Lots of information are available at [Prestashop DevDocs](https://devdocs.prestashop.com).
+Lot of information is available at [Prestashop DevDocs](https://devdocs.prestashop.com).
 
 ## Legal
 

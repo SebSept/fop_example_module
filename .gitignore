@@ -6,3 +6,6 @@ vendor
 .php_cs
 grumphp.yml
 notes
+
+; playground
+dummy/
