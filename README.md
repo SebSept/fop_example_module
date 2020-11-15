@@ -1,21 +1,36 @@
-# About
+# Prestashop Module Starter
+
+Bundled and preconfigured tools to develop a [Prestashop](https://www.prestashop.com/) module.
 
 This repository serve as a start point for a building a quality Prestashop module.
-It's pre-configured with tools to ensure that the code complies with the standards and is valid. 
 
-It uses pre-commit validation for local development and github actions for repository checks.
+## Featured local tools
 
-Before each commit, the lints and checks will run without nothing more to do.
-Each push on the github repository (you have to it yourself), the checks in [workflows](.github/workflows) will be triggered.
+- [php-cs-fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer)  (configured using prestashop standard)
+- [phpstan](https://phpstan.org/) (configured using prestashop standard) 
+- [prestashop/header-stamp](https://github.com/PrestaShopCorp/header-stamp/) (update license header in files) (configured using Friends of Presta AFL 3.0 license)
+- autoindex (add missing index.php)
 
-If something is wrong commit is aborted.
+These local tools are used automaticaly (git's precommit hook) and on demande (details below).
+ 
+## Featured CI/github actions
 
-You can also run all the checks and lints by running a single command : `composer run check`. (treat files added to commit)
+- php syntax check (php 7.2, php 7.3) 
+- php-cs-fix (configured using prestashop standard)
+- phpstan (configured using prestashop standard)
+- symfonycorp/security-checker (checks composer packages with security problem)
 
-It relies on [PrestaShop/php-dev-tools/](https://github.com/PrestaShop/php-dev-tools/). Which in turns, relies on wide spread tools (php-cs-fix, phpstan, and more (to come)).
+These tools are triggered automaticaly.
 
-Pre-commit actions are _bundled_ using [phpro/grumphp](https://github.com/phpro/grumphp).
+## Under the hood
+
+Before each commit, the lints and checks will run automaticaly, this feature is provided by [phpro/grumphp](https://github.com/phpro/grumphp).
+
+[php-cs-fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer) and [phpstan](https://phpstan.org/) configuration and bootstraping are provided by [PrestaShop/php-dev-tools/](https://github.com/PrestaShop/php-dev-tools/).
+
 Repository actions are made by [github workflows](https://docs.github.com/en/free-pro-team@latest/actions).
+ 
+You can also run all the checks and lints by running a single command : `composer run check`. (treat files added to commit)
  
 # Getting started
 
@@ -37,13 +52,15 @@ Edit `grumphp.yml` file, replace `/path/to/your/prestashop/` with a path to a Pr
 
 You are ready to go !
 
-# Coding standards and php tools
+# Coding standards
 
 Codes and documents on Friends of Presta targets [_PrestaShop_ ](https://github.com/prestashop/prestashop), so it uses the same coding and writing rules.
 
 For details, you can read [the DevDocs coding standards](https://devdocs.prestashop.com/1.7/development/coding-standards/)
 
-## Preinstalled tools for local development
+These standards are included in this package.
+
+# Preinstalled tools for local development
 
 These tools are triggered automatically before each commit (except header-stamp).
 They can also be launched on demand : `composer run check`.
@@ -101,9 +118,17 @@ _PS_ROOT_DIR_=/path/to/prestashop php ./vendor/bin/phpstan.phar analyse
 This command is not triggered automatically, run `composer run license` to launch it.
 The licence header is file is located at `dev_src/license_header.txt`.
 
-Notice : the project currently using a Fork for compatibilty with grumphp (symfony/console:^4.0).
+Notice : the project currently using a fork for compatibilty with grumphp (symfony/console:^4.0). (see [composer.json](composer.json) for details)
 
-## Github Actions
+### Autoindex
+
+It is required for a module to be valid and secure. It requires each folder to have an index.php file to avoid directory listing (in case the webservers allows it).
+
+[prestashop/autoindex](https://github.com/PrestaShopCorp/autoindex) provides this features.
+
+Notice : the project is currently using a fork to work as expected here (see [composer.json](composer.json) for details).
+ 
+# Github Actions
 
 These tools run when you push a commit to a github repository.
 Unlike the rest of this package, it relies on Prestashop tools.
