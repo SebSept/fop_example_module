@@ -1,12 +1,15 @@
 name: PHP syntax
-on: [ push, pull_request ]
+on: [push, pull_request]
 jobs:
   # Check there is no syntax errors in the project
   php-linter:
-    name: send module to validator
-    uses: PrestaShopCorp/github-action-validator@dev
-    env:
-      VALIDATOR_API_KEY: 710e997888011749b5aa5d2272ff897a
-    with:
-      github_link: "SebSept/fop_example_module"
-      github_branch: test_action_validator
+    name: PHP Syntax check 7.2|7.3
+    runs-on: ubuntu-latest
+    steps:
+      - name: send module to validator
+        uses: PrestaShopCorp/github-action-validator@dev
+        env:
+          VALIDATOR_API_KEY: 710e997888011749b5aa5d2272ff897a
+        with:
+          github_link: "SebSept/fop_example_module"
+          github_branch: test_action_validator
