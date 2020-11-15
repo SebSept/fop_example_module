@@ -1,6 +1,7 @@
 grumphp:
   tasks:
-    phpcsfixer: ~
+    phpcsfixer:
+      config: .php_cs.dist
     phpstan:
       use_grumphp_paths: false
   environment:
