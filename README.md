@@ -71,6 +71,10 @@ composer run php-cs
 
 [phpstan](https://phpstan.org/) _finds bugs in your code without writing tests._ It follows rules defines by Prestashop and use a bootstrap file provided by [prestashop/php-dev-tools](https://github.com/prestashop/php-dev-tools).
 
+> This command is triggered by `composer run check`.
+> You don't need to trigger it separately.
+> However, in case you want to you can, it is possible.
+
 #### Notice 
 
 By default `composer run check` use a phpstan configuration that check files independently of there git state (added to index or not).
@@ -83,10 +87,6 @@ grumphp:
     phpstan:
       use_grumphp_paths: true
 ```
-
-> This command is triggered by `composer run check`.
-> You don't need to trigger it separately.
-> However, in case you want to you can, it is possible.
 
 For some reason (not yet found, the composer run script can't run phpstan with the env var).
 The standalone command is then : 
