@@ -21,6 +21,6 @@ declare(strict_types=1);
 /**
  * Class exampleModule
  */
-class exampleModule extends Module
+class fop_example_module extends Module
 {
 }
