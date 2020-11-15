@@ -23,4 +23,8 @@ declare(strict_types=1);
  */
 class exampleModule extends Module
 {
+    public function install(): bool
+    {
+        return false;
+    }
 }
