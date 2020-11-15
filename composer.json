@@ -30,7 +30,8 @@
     "prestashop/php-dev-tools": "3.*",
     "phpstan/phpstan": "^0.12.54",
     "phpro/grumphp-shim": "^1.1",
-    "prestashop/autoindex": "dev-master"
+    "prestashop/autoindex": "dev-master",
+    "roave/security-advisories": "dev-latest"
   },
   "config": {
     "preferred-install": "dist",
