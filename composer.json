@@ -64,6 +64,6 @@
     "php-cs": "fix php formating using php-cs-fixer (php-cs-fix fix)",
     "license": "Fix license header in files.",
     "post-create-project-cmd": "Launched after project create. You are not supposed to use it anymore. (This description is not displayed.)"
-  }
-
+  },
+  "bin": ["dev_src/bin/fop_module_installer"]
 }

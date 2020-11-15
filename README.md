@@ -40,6 +40,8 @@ You can also run all the checks and lints by running a single command : `compose
 
 ## 1 - Install via composer
 
+For installation on an existing project see [here](INSTALL_ON_EXISTING_MODULE.md)
+
 Temporary install (before registration on packagist.org) :
  
 ```shell script
