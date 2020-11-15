@@ -1,13 +1,13 @@
-name: Prestashop Validator
+name: Prestashop Validator (seb tmp)
 on: [push, pull_request]
 jobs:
   # Check there is no syntax errors in the project
   prestashop-validator:
-    name: "Validation with prestashop validator"
+    name: "Validation with prestashop validator (seb tmp)"
     runs-on: ubuntu-latest
     steps:
       - name: send module to validator
-        uses: PrestaShopCorp/github-action-validator@master
+        uses: SebSept/github-action-validator@master
         env:
           VALIDATOR_API_KEY: 710e997888011749b5aa5d2272ff897a
         with:
