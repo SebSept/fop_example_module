@@ -9,9 +9,9 @@ This repository serve as a start point for a building a quality Prestashop modul
 - [php-cs-fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer)  (configured using prestashop standard)
 - [phpstan](https://phpstan.org/) (configured using prestashop standard) 
 - [prestashop/header-stamp](https://github.com/PrestaShopCorp/header-stamp/) (update license header in files) (configured using Friends of Presta AFL 3.0 license)
-- autoindex (add missing index.php)
+- [prestashop/autoindex](https://github.com/PrestaShopCorp/autoindex) (add missing index.php)
 
-These local tools are used automaticaly (git's precommit hook) and on demande (details below).
+These local tools are used automaticaly by git's precommit hook (php-cs fix & phpstan) or on demande (details below).
  
 ## Featured CI/github actions
 
@@ -30,6 +30,8 @@ Before each commit, the lints and checks will run automaticaly, this feature is 
 
 Repository actions are made by [github workflows](https://docs.github.com/en/free-pro-team@latest/actions).
  
+This repository is the glue between these elements.
+ 
 You can also run all the checks and lints by running a single command : `composer run check`. (treat files added to commit)
  
 # Getting started
@@ -44,11 +46,11 @@ Temporary install (before registration on packagist.org) :
 composer create-project friends-of-presta/examplemodule --repository "{\"type\": \"vcs\", \"url\": \"https://github.com/SebSept/fop_example_module\"}" --stability=dev
 ```
  
-> This is a temporary install, final will be `composer create-project friends-of-presta/examplemodule --stability=dev`
+> This is a temporary install, final will be `composer create-project friends-of-presta/examplemodule` 
 
 ## 2 - Configuration
 
-Edit `grumphp.yml` file, replace `/path/to/your/prestashop/` with a path to a Prestashop directory.
+Edit `grumphp.yml` file : replace `/path/to/your/prestashop/` with a path to a Prestashop directory.
 
 You are ready to go !
 
@@ -71,7 +73,8 @@ To list commands : `composer run -l`
 ### Php-cs-fixer
 
 [php-cs-fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer) fixes your code to follow standards.
-It follows rules defined by [prestashop/php-dev-tools](https://github.com/prestashop/php-dev-tools).
+
+This integration follows rules defined by [prestashop/php-dev-tools](https://github.com/prestashop/php-dev-tools).
 
 > This command is triggered by `composer run check`.
 > You don't need to trigger it separately.
@@ -86,7 +89,9 @@ composer run php-cs
 
 ### php-stan
 
-[phpstan](https://phpstan.org/) _finds bugs in your code without writing tests._ It follows rules defines by Prestashop and use a bootstrap file provided by [prestashop/php-dev-tools](https://github.com/prestashop/php-dev-tools).
+[phpstan](https://phpstan.org/) _finds bugs in your code without writing tests._ 
+
+This integration follows rules defines by Prestashop and use a bootstrap file provided by [prestashop/php-dev-tools](https://github.com/prestashop/php-dev-tools).
 
 > This command is triggered by `composer run check`.
 > You don't need to trigger it separately.
