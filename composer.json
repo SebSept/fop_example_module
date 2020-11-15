@@ -15,13 +15,22 @@
       "FriendsOfPresta\\BaseModule\\": "dev_src/"
     }
   },
+  "repositories": [{
+    "type": "vcs",
+    "url": "https://github.com/SebSept/autoindex",
+    "package": {
+      "name": "prestashop/autoindex"
+    }
+  }
+  ],
   "require": {
     "php": ">=7.2.0"
   },
   "require-dev": {
     "prestashop/php-dev-tools": "3.*",
     "phpstan/phpstan": "^0.12.54",
-    "phpro/grumphp-shim": "^1.1"
+    "phpro/grumphp-shim": "^1.1",
+    "prestashop/autoindex": "dev-master"
   },
   "config": {
     "preferred-install": "dist",
@@ -39,6 +48,11 @@
       "@putenv _PS_ROOT_DIR_=/path/to/prestashop/",
       "phpstan analyse ./"
     ],
+    "add-index" : [
+      "autoindex --exclude=vendor",
+      "@license"
+    ],
+    "index": "@add-index",
     "post-create-project-cmd": [
       "FriendsOfPresta\\BaseModule\\Integrator::integrate"
     ]
@@ -49,4 +63,5 @@
     "license": "Fix license header in files.",
     "post-create-project-cmd": "Launched after project create. You are not supposed to use it anymore. (This description is not displayed.)"
   }
+
 }

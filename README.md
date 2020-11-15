@@ -84,6 +84,8 @@ Then you are ready to run `composer run phpstan`
 This command is not triggered automatically, run `composer run license` to launch it.
 The licence header is file is located at `dev_src/license_header.txt`.
 
+Notice : the project currently using a Fork for compatibilty with grumphp (symfony/console:^4.0).
+
 ## Github Actions
 
 These tools run when you push a commit to a github repository.
