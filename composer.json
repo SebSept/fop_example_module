@@ -65,5 +65,5 @@
     "license": "Fix license header in files.",
     "post-create-project-cmd": "Launched after project create. You are not supposed to use it anymore. (This description is not displayed.)"
   },
-  "bin": ["dev_src/bin/fop_module_installer"]
+  "bin": ["dev_src/bin/fop_module_installer", "vendor/bin/grumphp"]
 }
