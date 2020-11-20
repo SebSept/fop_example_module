@@ -70,9 +70,9 @@ class InstallerCommand extends Command
 
     private function copySplFile(\SplFileInfo $file_info)
     {
-        if (!$file_info->isFile()) {
-            \dump($file_info);
-            throw new \Exception('oops ' . $file_info->getFilename()); // @todo oops
+        if (!$file_info->isFile() && !$file_info->isDir()) {
+//            \dump($file_info);
+            throw new \Exception('oops Not a dir & not a file ' . $file_info->getFilename()); // @todo oops
         }
 
         if (!$file_info->isDir()) {
