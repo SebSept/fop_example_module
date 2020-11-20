@@ -29,11 +29,11 @@
     "ext-json": "*",
     "prestashop/php-dev-tools": "3.*",
     "phpstan/phpstan": "^0.12.54",
-    "phpro/grumphp-shim": "^1.1",
     "prestashop/autoindex": "dev-master",
     "roave/security-advisories": "dev-latest",
     "symfony/var-dumper": "^5.1",
-    "symfony/console": "^5.1"
+    "symfony/console": "^5.1",
+    "phpro/grumphp-shim": "^1.1"
   },
   "require-dev": {
 
