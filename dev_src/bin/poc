@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php
 
+use PrestaShop\AutoIndex\Command\AddAutoIndexCommand;
 use Symfony\Component\Console\Application;
 
 /**
