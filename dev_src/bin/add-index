@@ -1,9 +1,5 @@
 #!/usr/bin/env php
 <?php
-
-use PrestaShop\AutoIndex\Command\AddAutoIndexCommand;
-use Symfony\Component\Console\Application;
-
 /**
  * Test de lancement d'un outils ajouté.
  * Au lieu de le lancer dans un terminal via `composer run lescript` on le lance via un bin déclaré.
@@ -14,6 +10,10 @@ use Symfony\Component\Console\Application;
  *
  * @author Sébastien Monterisi <contact@seb7.fr>
  */
+
+use PrestaShop\AutoIndex\Command\AddAutoIndexCommand;
+use Symfony\Component\Console\Application;
+
 
 function includeIfExists($file)
 {
@@ -28,11 +28,9 @@ if (!includeIfExists(__DIR__.'/../../vendor/autoload.php') && !includeIfExists(_
     exit(1);
 }
 
-// lancement par commande symfony : exemple avec  (script "auto-index" :autoindex --exclude=vendor
-
-$application = new Application('autoindex', '1.0.0');
+$application = new Application();
 $command = new AddAutoIndexCommand();
 
 $application->add($command);
 $application->setDefaultCommand($command->getName());
-$application->run();
+$application->run(new \Symfony\Component\Console\Input\ArrayInput(['command'=>'prestashop:add:index', '--exclude'=>'vendor' ]));

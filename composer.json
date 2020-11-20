@@ -15,17 +15,19 @@
       "FriendsOfPresta\\BaseModuleInstaller\\": "dev_src/"
     }
   },
-  "repositories": [{
-    "type": "vcs",
-    "url": "https://github.com/SebSept/autoindex",
-    "package": {
-      "name": "prestashop/autoindex"
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/SebSept/autoindex",
+      "package": {
+        "name": "prestashop/autoindex"
+      }
     }
-  }
   ],
   "require": {
     "php": ">=7.2.0",
-    "ext-json": "*"
+    "ext-json": "*",
+    "symfony/var-dumper": "^5.1"
   },
   "require-dev": {
     "prestashop/php-dev-tools": "3.*",
@@ -52,7 +54,7 @@
       "@putenv _PS_ROOT_DIR_=/path/to/prestashop/",
       "phpstan analyse"
     ],
-    "add-index" : [
+    "add-index": [
       "autoindex --exclude=vendor",
       "@license"
     ],
@@ -67,5 +69,9 @@
     "license": "Fix license header in files.",
     "post-create-project-cmd": "Launched after project create. You are not supposed to use it anymore. (This description is not displayed.)"
   },
-  "bin": ["dev_src/bin/fop_module_installer", "vendor/bin/grumphp", "dev_src/bin/poc"]
+  "bin": [
+    "dev_src/bin/fop_module_installer",
+    "vendor/bin/grumphp",
+    "dev_src/bin/add-index"
+  ]
 }
