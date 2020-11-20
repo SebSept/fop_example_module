@@ -12,7 +12,7 @@
   "autoload": {
     "psr-4": {
       "FriendsOfPresta\\ExampleModule\\": "src/",
-      "FriendsOfPresta\\BaseModule\\": "dev_src/"
+      "FriendsOfPresta\\BaseModuleInstaller\\": "dev_src/"
     }
   },
   "repositories": [{
@@ -24,14 +24,16 @@
   }
   ],
   "require": {
-    "php": ">=7.2.0"
+    "php": ">=7.2.0",
+    "ext-json": "*"
   },
   "require-dev": {
     "prestashop/php-dev-tools": "3.*",
     "phpstan/phpstan": "^0.12.54",
     "phpro/grumphp-shim": "^1.1",
     "prestashop/autoindex": "dev-master",
-    "roave/security-advisories": "dev-latest"
+    "roave/security-advisories": "dev-latest",
+    "composer/composer": "^2.0"
   },
   "config": {
     "preferred-install": "dist",
@@ -41,9 +43,9 @@
   "type": "prestashop-module",
   "scripts": {
     "check": [
-      "grumphp run"
+      "grumphp run --ansi"
     ],
-    "license": "header-stamp --license=dev_src/license_header.txt --exclude=vendor  --extensions=php,js,css,scss,tpl,html.twig,vue",
+    "license": "header-stamp --license=dev_src/license_header.txt --exclude=vendor --extensions=php,js,css,scss,tpl,html.twig,vue",
     "php-cs": "php-cs-fixer fix",
     "phpstan": [
       "echo 'For some reason (?) this is not working, use _PS_ROOT_DIR_=/path/to/prestashop php ./vendor/bin/phpstan.phar analyse'",
@@ -56,7 +58,7 @@
     ],
     "index": "@add-index",
     "post-create-project-cmd": [
-      "FriendsOfPresta\\BaseModule\\Integrator::integrate"
+      "FriendsOfPresta\\BaseModuleInstaller\\Integrator::integrate"
     ]
   },
   "scripts-descriptions": {
@@ -65,5 +67,5 @@
     "license": "Fix license header in files.",
     "post-create-project-cmd": "Launched after project create. You are not supposed to use it anymore. (This description is not displayed.)"
   },
-  "bin": ["dev_src/bin/fop_module_installer", "vendor/bin/grumphp"]
+  "bin": ["dev_src/bin/fop_module_installer", "vendor/bin/grumphp", "dev_src/bin/poc"]
 }

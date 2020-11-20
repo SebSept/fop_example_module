@@ -7,4 +7,4 @@ parameters:
   excludes_analyse:
     - vendor/
   reportUnmatchedIgnoredErrors: false
-  level: max
+  level: 1

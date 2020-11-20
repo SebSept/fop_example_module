@@ -1,5 +1,26 @@
 #!/usr/bin/env php
 <?php
 
-echo 'Hello I\'m the intaller script';
+use FriendsOfPresta\BaseModuleInstaller\InstallerCommand;
+use Symfony\Component\Console\Application;
+
+function includeIfExists($file)
+{
+    if (file_exists($file)) {
+        return include $file;
+    }
+}
+
+if (!includeIfExists(__DIR__.'/../../vendor/autoload.php') && !includeIfExists(__DIR__.'/../../../../autoload.php')) {
+    $msg = 'no autoload found';
+    fwrite(STDERR, $msg);
+    exit(1);
+}
+
+$app = new Application('fop module installer', '0.0.1');
+$installer_command = new InstallerCommand();
+$app->add($installer_command);
+$app->setDefaultCommand($installer_command->getName());
+$app->run();
+
 

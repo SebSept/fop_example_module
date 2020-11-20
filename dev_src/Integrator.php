@@ -17,7 +17,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License ("AFL") v. 3.0
  */
 
-namespace FriendsOfPresta\BaseModule;
+namespace FriendsOfPresta\BaseModuleInstaller;
 
 use Symfony\Component\Filesystem\Filesystem;
 
