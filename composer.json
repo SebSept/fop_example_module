@@ -26,8 +26,8 @@
   ],
   "require": {
     "php": ">=7.2.0",
-    "ext-json": "*",
-    "symfony/var-dumper": "^5.1"
+    "ext-json": "*"
+
   },
   "require-dev": {
     "prestashop/php-dev-tools": "3.*",
@@ -35,7 +35,8 @@
     "phpro/grumphp-shim": "^1.1",
     "prestashop/autoindex": "dev-master",
     "roave/security-advisories": "dev-latest",
-    "composer/composer": "^2.0"
+    "symfony/var-dumper": "^5.1",
+    "symfony/console": "^5.1"
   },
   "config": {
     "preferred-install": "dist",
