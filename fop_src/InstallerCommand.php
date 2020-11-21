@@ -10,7 +10,6 @@
 namespace FriendsOfPresta\BaseModuleInstaller;
 
 use Composer\Json\JsonManipulator;
-use http\Exception\RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -20,7 +19,8 @@ use Symfony\Component\Process\Process;
 
 final class InstallerCommand extends Command
 {
-    const CONFIG_TO_COPY = ['.github/workflows/', '.php_cs.dist', 'grumphp.yml.dist', 'phpstan.neon.dist'];
+    const CONFIG_TO_COPY = ['.github/workflows/', '.php_cs.dist', 'grumphp.yml.dist', 'phpstan.neon.dist',
+                            'fop_src/license_header.txt', ];
     /**
      * @var OutputInterface
      */
@@ -71,7 +71,7 @@ final class InstallerCommand extends Command
 
     private function copyConfigurationFiles(bool $interaction = false): void
     {
-        $this->output->writeln('Begining copying configuration files...', OutputInterface::VERBOSITY_VERBOSE);
+        $this->output->writeln('Copying resources (configuration files) ...', OutputInterface::VERBOSITY_VERBOSE);
         $this->fs = new Filesystem();
         foreach (self::CONFIG_TO_COPY as $spl_file) {
             $this->copySplFile(new \SplFileInfo(__DIR__ . '/../' . $spl_file));

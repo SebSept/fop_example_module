@@ -123,7 +123,7 @@ _PS_ROOT_DIR_=/path/to/prestashop php ./vendor/bin/phpstan.phar analyse
 [prestashop/header-stamp](https://github.com/PrestaShopCorp/header-stamp/) helps to ensure license headers in files are uptodate.
 
 This command is not triggered automatically, run `composer run license` to launch it.
-The licence header is file is located at `dev_src/license_header.txt`.
+The licence header is file is located at `fop_src/license_header.txt`.
 
 Notice : the project currently using a fork for compatibilty with grumphp (symfony/console:^4.0). (see [composer.json](composer.json) for details)
 

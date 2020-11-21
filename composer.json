@@ -12,7 +12,7 @@
   "autoload": {
     "psr-4": {
       "FriendsOfPresta\\ExampleModule\\": "src/",
-      "FriendsOfPresta\\BaseModuleInstaller\\": "dev_src/"
+      "FriendsOfPresta\\BaseModuleInstaller\\": "fop_src/"
     }
   },
   "repositories": [
@@ -47,7 +47,7 @@
     "fop_check": [
       "grumphp run --ansi"
     ],
-    "fop_license": "header-stamp --license=dev_src/license_header.txt --exclude=vendor --extensions=php,js,css,scss,tpl,html.twig,vue",
+    "fop_license": "header-stamp --license=fop_src/license_header.txt --exclude=vendor --extensions=php,js,css,scss,tpl,html.twig,vue",
     "fop_php-cs": "php-cs-fixer fix",
     "fop_phpstan": [
       "echo 'For some reason (?) this is not working, use _PS_ROOT_DIR_=/path/to/prestashop php ./vendor/bin/phpstan.phar analyse'",
@@ -70,6 +70,6 @@
     "post-create-project-cmd": "Launched after project create. You are not supposed to use it anymore. (This description is not displayed.)"
   },
   "bin": [
-    "dev_src/bin/fop_tools_installer"
+    "fop_src/bin/fop_tools_installer"
   ]
 }
