@@ -33,10 +33,11 @@
     "roave/security-advisories": "dev-latest",
     "symfony/var-dumper": "^5.1",
     "symfony/console": "^5.1",
-    "phpro/grumphp": "^1.1"
+    "phpro/grumphp": "^1.1",
+    "composer/composer": "^2.0"
   },
   "require-dev": {
-    "composer/composer": "^2.0"
+
   },
   "config": {
     "preferred-install": "dist",
