@@ -51,6 +51,7 @@ final class InstallerCommand extends Command
 //            $this->copyConfigurationFiles(!$input->getOption('no-interaction'));
 //            $this->initGrumphp();
             $this->insertComposerScripts(!$input->getOption('no-interaction'));
+            trigger_error('lancer l\'intégrateur');
 
             return Command::SUCCESS; /* @phpstan-ignore-line */
         } catch (\Exception $exception) {
@@ -167,6 +168,8 @@ final class InstallerCommand extends Command
         foreach ((array) $source_scripts->scripts as $script_name => $script_command) {
             $json_manipulator->addSubNode('scripts', $script_name, $script_command);
         }
+        $this->output->writeln('Composer scripts inserted', OutputInterface::VERBOSITY_QUIET);
+        $this->output->writeln('run <fg=cyan>composer run --list<fg/>. Friends of Presta scripts names starts with fop.', OutputInterface::VERBOSITY_NORMAL);
 
         $fs->dumpFile($target_composer_path, $json_manipulator->getContents());
     }
