@@ -19,15 +19,21 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class InstallerCommand extends Command
 {
-    const CONFIG_TO_COPY = ['.github/workflows/', '.php_cs', 'grumphp.yml', 'phpstan.neon.dist'];
+    const CONFIG_TO_COPY = ['.github/workflows/', '.php_cs', 'grumphp.yml.dist', 'phpstan.neon.dist'];
     /**
      * @var OutputInterface
      */
     private $output;
+
     /**
      * @var InputInterface
      */
     private $input;
+
+    /**
+     * @var Filesystem
+     */
+    private $fs;
 
     protected function configure(): void
     {
@@ -62,7 +68,7 @@ class InstallerCommand extends Command
     private function copyConfigurationFiles(bool $interaction = false): void
     {
         $this->output->writeln('Begining copying configuration files...', OutputInterface::VERBOSITY_VERBOSE);
-        $fs = new Filesystem();
+        $this->fs = new Filesystem();
         foreach (self::CONFIG_TO_COPY as $spl_file) {
             $this->copySplFile(new \SplFileInfo(__DIR__ . '/../' . $spl_file));
         }
@@ -71,23 +77,38 @@ class InstallerCommand extends Command
     private function copySplFile(\SplFileInfo $file_info)
     {
         if (!$file_info->isFile() && !$file_info->isDir()) {
-//            \dump($file_info);
-            throw new \Exception('oops Not a dir & not a file ' . $file_info->getFilename()); // @todo oops
+            \dump($file_info);
+            throw new \LogicException('File to copy not found in sources ! Contact the developpers. File : ' . $file_info->getFilename());
         }
 
         if (!$file_info->isDir()) {
-            // @todo ecrire fonction de copie
-            $this->output->writeln('copie du fichier ' . $file_info->getFilename());
+            $this->output->write('Copy file ' . $file_info->getFilename(), false, OutputInterface::VERBOSITY_NORMAL);
+            $this->output->writeln(' to ' . __DIR__ . '/' . $this->destinationPath($file_info), OutputInterface::VERBOSITY_NORMAL);
+            // does not copy if exists and is newer
+            $this->fs->copy($file_info->getPathname(), __DIR__ . '/' . $this->destinationPath($file_info));
 
             return;
         }
 
-        $this->output->writeln('copie du dossier par récursion ...' . $file_info->getFilename());
-        foreach ($file_info as $sub_file_info) {
-            $this->output->writeln('sub : ' . $sub_file_info->getFilename());
+        $this->output->writeln(' Now seeking ' . $file_info->getFilename(), OutputInterface::VERBOSITY_VERBOSE);
+        // create directory if does not exist
+        $destination_directory_path = $this->destinationPath($file_info);
+        // maybe no checks are needed ...
+        $destination = new \SplFileInfo($destination_directory_path);
+        if (!$destination->isDir() && !$destination->isFile() && !$destination->isLink()) {
+            $this->output->writeln('Creating directory ' . __DIR__ . '/' . $destination_directory_path, OutputInterface::VERBOSITY_VERBOSE);
+            $this->fs->mkdir(__DIR__ . '/' . $destination_directory_path);
+        }
 
-            // @todo ecrire fonction de création de dossier
+        // treat files and dir in that directory, recursion
+        $sub_dir = new \FilesystemIterator($file_info->getPathname());
+        foreach ($sub_dir as $sub_file_info) {
             $this->copySplFile($sub_file_info);
         }
+    }
+
+    private function destinationPath(\SplFileInfo $source): string
+    {
+        return '../../../../' . rtrim($this->fs->makePathRelative($source->getPathname(), __DIR__ . '/../'), '/');
     }
 }
