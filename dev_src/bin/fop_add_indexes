@@ -14,7 +14,6 @@
 use PrestaShop\AutoIndex\Command\AddAutoIndexCommand;
 use Symfony\Component\Console\Application;
 
-
 function includeIfExists($file)
 {
     if (file_exists($file)) {
@@ -34,3 +33,4 @@ $command = new AddAutoIndexCommand();
 $application->add($command);
 $application->setDefaultCommand($command->getName());
 $application->run(new \Symfony\Component\Console\Input\ArrayInput(['command'=>'prestashop:add:index', '--exclude'=>'vendor' ]));
+throw new Exception("Tester si travaille au bon endroit ? Peut fonctionne en create project et en dependance ?");

@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Trigger phpstan tests
+ */
+
+function includeIfExists($file)
+{
+    if (file_exists($file)) {
+        return include $file;
+    }
+}
+
+if (!includeIfExists(__DIR__.'/../../vendor/autoload.php') && !includeIfExists(__DIR__.'/../../../../autoload.php')) {
+    $msg = 'no autoload found';
+    fwrite(STDERR, $msg);
+    exit(1);
+}
+
+$p = new \Symfony\Component\Process\Process(['phpstan','analyse'], __DIR__.'/../../../../../');
+$p->run();
+
+echo $p->getErrorOutput() . $p->getOutput();
