@@ -4,8 +4,6 @@
  *
  * @author Sébastien Monterisi <contact@seb7.fr>
  */
-// @todo faire une commande symfony (pour gérer des options et gerer des questions)
-// @todo linter le composer.json final au besoin.
 
 namespace FriendsOfPresta\BaseModuleInstaller;
 
@@ -55,7 +53,7 @@ final class InstallerCommand extends Command
 
             return Command::SUCCESS; /* @phpstan-ignore-line */
         } catch (\Exception $exception) {
-            $this->output->writeln('<fg=red>Installation aborted : ' . $exception->getMessage() . '<fg/>', OutputInterface::VERBOSITY_QUIET);
+            $this->output->writeln('<fg=red>Installation aborted : ' . $exception->getMessage() . '</fg>', OutputInterface::VERBOSITY_QUIET);
 
             return Command::FAILURE; /* @phpstan-ignore-line */
         }
@@ -169,7 +167,7 @@ final class InstallerCommand extends Command
             $json_manipulator->addSubNode('scripts', $script_name, $script_command);
         }
         $this->output->writeln('Composer scripts inserted', OutputInterface::VERBOSITY_QUIET);
-        $this->output->writeln('run <fg=cyan>composer run --list<fg/>. Friends of Presta scripts names starts with fop.', OutputInterface::VERBOSITY_NORMAL);
+        $this->output->writeln('run <fg=cyan>composer run --list</fg>. Friends of Presta scripts names starts with fop.', OutputInterface::VERBOSITY_NORMAL);
 
         $fs->dumpFile($target_composer_path, $json_manipulator->getContents());
     }
