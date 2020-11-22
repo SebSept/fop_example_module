@@ -30,7 +30,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class GrumphpConfigurationCommand extends Command
 {
-    public function configure()
+    public function configure(): void
     {
         $this->setName('fop:grumphpinit');
         $this->addOption('base-path', 'd', InputOption::VALUE_REQUIRED);
@@ -39,8 +39,12 @@ class GrumphpConfigurationCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $base_path = $input->getOption('base-path');
+        if (!is_string($base_path)) {
+            dump($base_path);
+            throw new \Exception('Invalid Option --base-path. See above.');
+        }
 
-        $grumphp_yaml_path = $base_path . 'grumphp.yml';
+        $grumphp_yaml_path = (string) $base_path . 'grumphp.yml';
         $yaml = Yaml::parseFile($grumphp_yaml_path);
         $output->writeln('A path to a Prestashop installation is needed by phpstan.');
         do {
