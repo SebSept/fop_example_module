@@ -45,11 +45,11 @@ final class InstallerCommand extends Command
         $this->output = $output;
         try {
             $this->displayWelcomeMessage();
-            trigger_error('reactiver ces étapes');
+            trigger_error('reactiver ces étapes et tester l\'écrasement de fichiers');
 //            $this->copyConfigurationFiles(!$input->getOption('no-interaction'));
 //            $this->initGrumphp();
             $this->insertComposerScripts(!$input->getOption('no-interaction'));
-            trigger_error('lancer l\'intégrateur');
+            Integrator::integrate(__DIR__ . '/../');
 
             return Command::SUCCESS; /* @phpstan-ignore-line */
         } catch (\Exception $exception) {

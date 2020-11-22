@@ -17,17 +17,45 @@
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License ("AFL") v. 3.0
  */
 
+declare(strict_types=1);
+
 namespace FriendsOfPresta\BaseModuleInstaller;
 
+require_once __DIR__ . '/../../../../autoload.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Filesystem\Filesystem;
 
 class Integrator
 {
-    public static function integrate(): void
+    public static function integrate(?string $base_path): void
+    {
+        $base_path = $base_path ?? __DIR__;
+        $base_path = trim($base_path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+        try {
+            self::createGrumphpConfigFile($base_path);
+            self::configureGrumphp($base_path);
+        } catch (\Exception $exception) {
+            echo 'Error integrating grumphp : ' . $exception->getMessage();
+            exit(1);
+        }
+    }
+
+    private static function createGrumphpConfigFile(string $base_path): void
     {
         $fs = new Filesystem();
-        $fs->copy('grumphp.yml.dist', 'grumphp.yml');
-        echo "Fichier 'grumphp.yml' créé." . PHP_EOL . 'Definissez _PS_ROOT_DIR_ avec le chemin vers une installation de prestashop.';
-        echo "File 'grumphp.yml' created." . PHP_EOL . 'Define _PS_ROOT_DIR_ with the path to a prestashop installation.';
+        $fs->copy($base_path . 'grumphp.yml.dist', $base_path . 'grumphp.yml');
+        echo sprintf("File 'grumphp.yml' created at %s", $base_path);
+    }
+
+    private static function configureGrumphp(string $base_path): void
+    {
+        $application = new Application();
+        $command = new GrumphpConfigurationCommand();
+
+        $application->add($command);
+        $application->setDefaultCommand($command->getName());
+        $application->run(new ArrayInput(['base-path' => $base_path]));
     }
 }
