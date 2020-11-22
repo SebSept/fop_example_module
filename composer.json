@@ -34,7 +34,8 @@
     "symfony/var-dumper": "^5.1",
     "symfony/console": "^5.1",
     "phpro/grumphp": "^1.1",
-    "composer/composer": "^2.0"
+    "composer/composer": "^2.0",
+    "symfony/yaml": "^5.1"
   },
   "require-dev": {},
   "config": {

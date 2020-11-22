@@ -21,7 +21,19 @@ declare(strict_types=1);
 
 namespace FriendsOfPresta\BaseModuleInstaller;
 
-require_once __DIR__ . '/../../../../autoload.php';
+function includeIfExists($file)
+{
+    if (file_exists($file)) {
+        return include $file;
+    }
+}
+
+// requires autoload in vendor installation context (composer required) or in stardalone context (git clone).
+if (!includeIfExists(__DIR__ . '/../../../autoload.php') && !includeIfExists(__DIR__ . '/../vendor/autoload.php')) {
+    $msg = 'no autoload found';
+    fwrite(STDERR, $msg);
+    exit(1);
+}
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -46,7 +58,7 @@ class Integrator
     {
         $fs = new Filesystem();
         $fs->copy($base_path . 'grumphp.yml.dist', $base_path . 'grumphp.yml');
-        echo sprintf("File 'grumphp.yml' created at %s", $base_path);
+        echo sprintf("File 'grumphp.yml' created at %s", $base_path) . PHP_EOL;
     }
 
     private static function configureGrumphp(string $base_path): void
@@ -56,6 +68,6 @@ class Integrator
 
         $application->add($command);
         $application->setDefaultCommand($command->getName());
-        $application->run(new ArrayInput(['base-path' => $base_path]));
+        $application->run(new ArrayInput([$command->getName(), '--base-path' => $base_path]));
     }
 }
