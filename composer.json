@@ -57,7 +57,7 @@
     ],
     "fop_add-index": [
       "autoindex --exclude=vendor",
-      "@license"
+      "@fop_license"
     ],
     "fop_index": "@add-index",
     "post-create-project-cmd": [
