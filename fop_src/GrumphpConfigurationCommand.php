@@ -4,6 +4,7 @@
  *
  * @author Sébastien Monterisi <contact@seb7.fr>
  */
+declare(strict_types=1);
 
 namespace FriendsOfPresta\BaseModuleInstaller;
 
