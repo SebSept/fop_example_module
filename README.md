@@ -42,6 +42,31 @@ You can also run all the checks and lints by running a single command : `compose
 
 > composer create-project installation is not supported. it was a few days ago. not now.
 
+### Temporary, will building !
+> some this package is not yet on packagist. (It will be.)
+> so the root composer json (your project) must include :
+
+```json
+  "minimum-stability": "dev",
+
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/SebSept/fop_example_module",
+      "package": {
+        "name": "friends-of-presta/examplemodule"
+      }
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/SebSept/autoindex",
+      "package": {
+        "name": "prestashop/autoindex"
+      }
+    }
+  ],
+```
+
 Require the package as a dev dependency :
  ```shell script
  composer require --dev friends-of-presta/examplemodule --repository "{\"type\": \"vcs\", \"url\": \"https://github.com/SebSept/fop_example_module\"}" --stability=dev
