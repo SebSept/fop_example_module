@@ -1,8 +1,8 @@
-# Prestashop Module Starter
+Beta version.
+
+# Prestashop Module development setup
 
 Bundled and preconfigured tools to develop a [Prestashop](https://www.prestashop.com/) module.
-
-This repository serve as a start point for a building a quality Prestashop module.
 
 ## Featured local tools
 
@@ -15,7 +15,7 @@ These local tools are used automaticaly by git's precommit hook (php-cs fix & ph
  
 ## Featured CI/github actions
 
-- php syntax check (php 7.2, php 7.3) 
+- php syntax check (php 7.2, php 7.3)
 - php-cs-fix (configured using prestashop standard)
 - phpstan (configured using prestashop standard)
 - symfonycorp/security-checker (checks composer packages with security problem)
@@ -40,19 +40,20 @@ You can also run all the checks and lints by running a single command : `compose
 
 ## 1 - Install via composer
 
-For installation on an existing project see [here](INSTALL_ON_EXISTING_MODULE.md)
+> composer create-project installation is not supported. it was a few days ago. not now.
 
-Temporary install (before registration on packagist.org) :
- 
-```shell script
-composer create-project friends-of-presta/examplemodule --repository "{\"type\": \"vcs\", \"url\": \"https://github.com/SebSept/fop_example_module\"}" --stability=dev
-```
- 
-> This is a temporary install, final will be `composer create-project friends-of-presta/examplemodule` 
+Require the package as a dev dependency :
+ ```shell script
+ composer require --dev friends-of-presta/examplemodule --repository "{\"type\": \"vcs\", \"url\": \"https://github.com/SebSept/fop_example_module\"}" --stability=dev
+ ```
+  
+ > This is a temporary install, final will be `composer require --dev friends-of-presta/examplemodule` (examplemodule will also change)
 
 ## 2 - Configuration
 
-Edit `grumphp.yml` file : replace `/path/to/your/prestashop/` with a path to a Prestashop directory.
+Type `./vendor/bin/fop_module_installer`.
+
+That's all :)
 
 You are ready to go !
 

@@ -59,10 +59,7 @@
       "autoindex --exclude=vendor",
       "@fop_license"
     ],
-    "fop_index": "@add-index",
-    "post-create-project-cmd": [
-      "FriendsOfPresta\\BaseModuleInstaller\\Integrator::integrate"
-    ]
+    "fop_index": "@add-index"
   },
   "scripts-descriptions": {
     "fop_check": "Start scripts triggered before a commit. Use it as often as needed :)",
