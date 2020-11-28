@@ -58,10 +58,9 @@ final class InstallerCommand extends Command
         $this->output = $output;
         try {
             $this->displayWelcomeMessage();
-            trigger_error('reactiver ces étapes et tester l\'écrasement de fichiers');
-//            $this->copyConfigurationFiles(!$input->getOption('no-interaction'));
-//            $this->initGrumphp();
-//            $this->insertComposerScripts(!$input->getOption('no-interaction'));
+            $this->copyConfigurationFiles(!$input->getOption('no-interaction'));
+            $this->initGrumphp();
+            $this->insertComposerScripts(!$input->getOption('no-interaction'));
             Integrator::integrate(__DIR__ . '/../../../../');
 
             return Command::SUCCESS; /* @phpstan-ignore-line */
@@ -83,6 +82,7 @@ final class InstallerCommand extends Command
     private function copyConfigurationFiles(bool $interaction = false): void
     {
         $this->output->writeln('Copying resources (configuration files) ...', OutputInterface::VERBOSITY_VERBOSE);
+        $this->output->writeln('Dir is : ' . __DIR__, OutputInterface::VERBOSITY_DEBUG);
         $this->fs = new Filesystem();
         foreach (self::CONFIG_TO_COPY as $spl_file) {
             $this->copySplFile(new \SplFileInfo(__DIR__ . '/../' . $spl_file));
@@ -97,8 +97,8 @@ final class InstallerCommand extends Command
         }
 
         if (!$file_info->isDir()) {
-            $this->output->write('Copy file ' . $file_info->getFilename(), false, OutputInterface::VERBOSITY_NORMAL);
-            $this->output->writeln(' to ' . __DIR__ . '/' . $this->destinationPath($file_info), OutputInterface::VERBOSITY_NORMAL);
+            $this->output->writeln('Copy file ' . $file_info->getFilename(), OutputInterface::VERBOSITY_NORMAL);
+            $this->output->writeln('  to ' . __DIR__ . '/' . $this->destinationPath($file_info), OutputInterface::VERBOSITY_VERBOSE);
             // does not copy if exists and is newer
             $this->fs->copy($file_info->getPathname(), __DIR__ . '/' . $this->destinationPath($file_info));
 
@@ -155,12 +155,13 @@ final class InstallerCommand extends Command
         $questioner = $this->getHelper('question');
 
         // backup composer
-        $question = new Question('Insert tools\' scripts in composer.json ? (yes)', 'yes');
+        $question = new Question('<question>Insert tools\' scripts in composer.json ? (yes)</question>', 'yes');
         if (!$interaction || 'yes' === $questioner->ask($this->input, $this->output, $question)) {
             $fs->copy($target_composer_path, $target_composer_path_backup);
-            $this->output->writeln("composer.json backup created : $target_composer_path", OutputInterface::VERBOSITY_QUIET);
+            $this->output->writeln('composer.json backup created');
+            $this->output->writeln("  at $target_composer_path", OutputInterface::VERBOSITY_VERBOSE);
         } else {
-            $this->output->writeln('composer.json not backed up.', OutputInterface::VERBOSITY_VERBOSE);
+            $this->output->writeln('composer.json not backed up.', OutputInterface::VERBOSITY_NORMAL);
         }
 
         $source_scripts = json_decode(file_get_contents($source_composer_path)); // todo use symfony (de)serializer ?
@@ -169,19 +170,15 @@ final class InstallerCommand extends Command
         }
 
         // extraction composer cible
-//        $project_composer_json = json_decode(file_get_contents($target_composer_path));
-//        if (false === $project_composer_json) {
-//            throw new RuntimeException('Failed to jsondecode ' . $target_composer_path);
-//        }
         $json_manipulator = new JsonManipulator(file_get_contents($target_composer_path));
 
         // insertion des scripts
         foreach ((array) $source_scripts->scripts as $script_name => $script_command) {
             $json_manipulator->addSubNode('scripts', $script_name, $script_command);
         }
-        $this->output->writeln('Composer scripts inserted', OutputInterface::VERBOSITY_QUIET);
-        $this->output->writeln('run <fg=cyan>composer run --list</fg>. Friends of Presta scripts names starts with fop.', OutputInterface::VERBOSITY_NORMAL);
-
         $fs->dumpFile($target_composer_path, $json_manipulator->getContents());
+        $this->output->writeln('Composer scripts inserted', OutputInterface::VERBOSITY_QUIET);
+        $this->output->writeln('<fg=cyan>run composer run --list</>');
+        $this->output->writeln('Friends of Presta scripts names starts with fop_.', OutputInterface::VERBOSITY_NORMAL);
     }
 }
