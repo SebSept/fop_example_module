@@ -61,7 +61,8 @@ final class InstallerCommand extends Command
             $this->copyConfigurationFiles(!$input->getOption('no-interaction'));
             $this->initGrumphp();
             $this->insertComposerScripts(!$input->getOption('no-interaction'));
-            Integrator::integrate(__DIR__ . '/../../../../');
+            Integrator::integrate(__DIR__ . '/../../../../'); // @todo intégrer ici
+            $this->displaySuccessfullInstallationMessage();
 
             return Command::SUCCESS; /* @phpstan-ignore-line */
         } catch (\Exception $exception) {
@@ -77,6 +78,13 @@ final class InstallerCommand extends Command
         $welcome_text = $formatter->formatBlock('Welcome to Friends Of Presta Module development tools installer.', 'info');
         $this->output->writeln($welcome_text);
         $this->output->writeln(['No files will be erased.', 'Modified or replaced files are copied using the suffix .backup.\<timestamp>']);
+    }
+
+    private function displaySuccessfullInstallationMessage(): void
+    {
+        $formatter = $this->getHelper('formatter');
+        $welcome_text = $formatter->formatBlock('Done. You are ready to implement a nice Prestashop Module :)', 'comment');
+        $this->output->writeln($welcome_text);
     }
 
     private function copyConfigurationFiles(bool $interaction = false): void
