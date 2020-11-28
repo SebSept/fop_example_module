@@ -44,7 +44,7 @@ class Integrator
     public static function integrate(?string $base_path): void
     {
         $base_path = $base_path ?? __DIR__;
-        $base_path = trim($base_path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+        $base_path = rtrim($base_path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
         try {
             self::createGrumphpConfigFile($base_path);
             self::configureGrumphp($base_path);
