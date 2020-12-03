@@ -19,6 +19,7 @@ These local tools are used automaticaly by git's precommit hook (php-cs fix & ph
 - php-cs-fix (configured using prestashop standard)
 - phpstan (configured using prestashop standard)
 - symfonycorp/security-checker (checks composer packages with security problem)
+- workflow to release to module (zip with the right directory) created when pushing a tag.
 
 These tools are triggered automaticaly.
 
