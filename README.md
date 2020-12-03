@@ -69,7 +69,7 @@ You can also run all the checks and lints by running a single command : `compose
 
 Require the package as a dev dependency :
  ```shell script
- composer require --dev friends-of-presta/examplemodule --repository "{\"type\": \"vcs\", \"url\": \"https://github.com/SebSept/fop_example_module\"}" --stability=dev
+ composer require --dev friends-of-presta/examplemodule:dev-main 
  ```
   
  > This is a temporary install, final will be `composer require --dev friends-of-presta/examplemodule` (examplemodule will also change)

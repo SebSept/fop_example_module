@@ -19,9 +19,8 @@
     {
       "type": "vcs",
       "url": "https://github.com/SebSept/autoindex",
-      "package": {
-        "name": "prestashop/autoindex"
-      }
+      "package": {}
+
     }
   ],
   "require": {
