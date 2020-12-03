@@ -50,7 +50,7 @@
     "fop_license": "header-stamp --license=fop_src/license_header.txt --exclude=vendor --extensions=php,js,css,scss,tpl,html.twig,vue",
     "fop_php-cs": "php-cs-fixer fix",
     "fop_phpstan": [
-      "echo 'For some reason (?) this is not working, use _PS_ROOT_DIR_=/path/to/prestashop php ./vendor/bin/phpstan.phar analyse'",
+      "echo edit composer.json. remove this line. replace '/path/to/prestashop/' by a real local path. && exit 1",
       "@putenv _PS_ROOT_DIR_=/path/to/prestashop/",
       "phpstan analyse"
     ],
